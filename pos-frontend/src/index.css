@@ -1,0 +1,877 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  margin: 0;
+  font-family: Poppins;
+}
+
+h1 {
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 8px;
+  border: 1px solid #ddd;
+  margin: 5px 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+li a:hover {
+  color: #6f6a6a;
+  transition: 0.2s ease-in-out;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.product-container {
+  display: grid;
+  border-radius: 1rem;
+  grid-template-columns: auto auto auto;
+  gap: 4rem;
+  padding: 3rem;
+  align-items: center;
+  justify-content: space-around;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 500px;
+}
+.product-image {
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+}
+.cashier-img {
+  width: 150px;
+  height: 100px;
+  border-radius: 10px;
+}
+.productlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 200px;
+  text-align: center;
+  padding: 1.6rem;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.edit-button,
+.delete-button {
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button {
+  background-color: #ffc107;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #e0a800;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.listproduct-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 5rem;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-around;
+}
+.order-placed {
+  font-size: 14px;
+  color: green;
+}
+.order-container button {
+  padding: 0.5rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* Styling untuk tombol Complete Order dan Cancel Order */
+.button-complete-order,
+.button-cancel-order {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-complete-order {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-complete-order:hover {
+  background-color: #218838;
+}
+
+.button-cancel-order {
+  background-color: red;
+  color: white;
+}
+
+.button-cancel-order:hover {
+  background-color: #c82333;
+}
+.buttonorder {
+  display: flex;
+}
+.cashier-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.cashier-right {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: center;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.cashier-right ul li {
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+}
+.button-add-to-cart,
+.button-place-order {
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-add-to-cart {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-add-to-cart:hover {
+  background-color: #218838;
+}
+
+.button-place-order {
+  background-color: #007bff;
+  color: white;
+}
+
+.button-place-order:hover {
+  background-color: #0056b3;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+nav ul li {
+  display: inline;
+  margin-right: 2rem;
+  font-weight: 500;
+  border: 0;
+}
+
+.formproduk {
+  max-width: 200px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.inputfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.formproduk input[type="file"] {
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.formproduk input[type="file"]::file-selector-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.formproduk input[type="file"]::file-selector-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.formproduk input[type="file"]::file-selector-button:active {
+  background-color: #003f7f;
+  transform: scale(1);
+}
+.formproduk h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.formproduk input[type="text"],
+.formproduk input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.formproduk button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.formproduk button:hover {
+  background-color: #0056b3;
+}
+
+.formproduk p {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.editproduk {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 300px;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.editproduk input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.editproduk button {
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.card-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 330px;
+  height: 400px;
+  text-align: center;
+  gap: 1.5rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+}
+
+.card-order:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.order-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.order-details ul {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.order-details li {
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 4px;
+  padding: 0.5rem 0;
+}
+
+/* buat navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1rem 2rem;
+  background-color: #2c3e50; /* Elegant dark blue */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.user-mark {
+  margin-right: 1.5rem;
+  cursor: pointer;
+  color: white;
+  background-color: #007bff; /* Blue background */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.user-mark a {
+  color: white;
+  font-weight: 500;
+}
+
+.user-mark:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
+}
+
+.user-mark:active {
+  background-color: #003f7f; /* Even darker blue on active */
+  transform: scale(1);
+}
+
+.nav-links a:hover {
+  color: #ffdd57; /* Yellow on hover */
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout-button .btn {
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button .btn:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+}
+
+.logout-button .btn:active {
+  background-color: #e60000;
+  transform: scale(1);
+}
+
+.logout-button .btn {
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button .btn:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+}
+
+.logout-button .btn:active {
+  background-color: #e60000;
+  transform: scale(1);
+}
+
+/* buat login form */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.login-form {
+  max-width: 360px;
+  margin: 80px auto;
+  padding: 30px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #313d4a;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+.login-form p {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* buat button add to cart */
+.quantity-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.quantity-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.quantity-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.quantity-btn:hover {
+  background-color: #0056b3;
+}
+
+.quantity-value {
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.add-to-cart-btn {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838;
+}
+
+.cart-item {
+  width: 290px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+.remove-btn {
+  margin-top: 0.5rem;
+  background-color: #e74c3c; /* Elegant red */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b; /* Darker red on hover */
+  transform: scale(1.05);
+}
+
+.remove-btn:active {
+  background-color: #a93226; /* Even darker red on active */
+  transform: scale(1);
+}
+
+/* subnav */
+
+.sub-navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #2c3e50;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  border-radius: 10px;
+}
+
+.sub-navbar li {
+  list-style: none;
+  margin: 0 20px;
+  border: 0;
+}
+
+.sub-navbar a {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sub-navbar a:hover {
+  background-color: #34495e;
+  color: #ecf0f1;
+}
+.sub-navbar .active a {
+  border-bottom: 2px solid #ecf0f1;
+  color: #ecf0f1;
+}
+.order-canceled {
+  color: red;
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 300ms, transform 300ms;
+}
+/* dashboard */
+/* Styling untuk dashboard */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa; /* Warna latar belakang abu-abu muda */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk efek kedalaman */
+  margin-top: 5rem;
+}
+
+.dashboard h1 {
+  text-align: center;
+  color: #2c3e50; /* Warna teks biru tua */
+  margin-bottom: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Grid dengan 3 kolom dengan rasio 1:1 */
+  gap: 20px; /* Jarak antar kotak */
+}
+
+.dashboard-section {
+  text-align: center;
+  background-color: #ffffff; /* Warna latar belakang putih */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk efek kedalaman */
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.dashboard-section-content {
+  position: absolute;
+
+  overflow: auto;
+}
+
+.dashboard-section h2 {
+  color: #34495e; /* Warna teks biru tua */
+  margin-bottom: 10px;
+}
+
+.dashboard-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dashboard-section li {
+  background-color: #f8f9fa; /* Warna latar belakang abu-abu muda */
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk efek kedalaman */
+}
+
+.dashboard-section li p {
+  margin: 5px 0;
+  color: #2c3e50; /* Warna teks biru tua */
+}
+
+.dashboard-section li p strong {
+  color: #2980b9; /* Warna teks biru */
+}
+/* admin control */
+
+.admin-control-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa; /* Warna latar belakang abu-abu muda */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk efek kedalaman */
+}
+
+.admin-control-page h1 {
+  text-align: center;
+  color: #2c3e50; /* Warna teks biru tua */
+  margin-bottom: 20px;
+}
+
+.admin-control-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Jarak antar elemen */
+}
+
+.create-account-form {
+  flex: 1;
+  background-color: #ffffff; /* Warna latar belakang putih */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk efek kedalaman */
+}
+
+.dashboard-admin {
+  flex: 1;
+  background-color: #ffffff; /* Warna latar belakang putih */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk efek kedalaman */
+}
+
+.dashboard-admin h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.dashboard-admin ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dashboard-admin li {
+  background-color: #f8f9fa;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-admin li p {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.input-error {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 5px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
