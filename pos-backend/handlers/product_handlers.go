@@ -15,15 +15,12 @@ import (
 	"pos-backend/models"
 	"strconv"
 
-	"github.com/go-redis/redis"
+	"github.com/go-redis/redis/v8"
 	_ "github.com/godror/godror"
 )
-var (
-	db     *sql.DB
-	ctx    = context.Background()
-	rdb    *redis.Client
-)
-func getProducts(w http.ResponseWriter, r *http.Request) {
+
+
+func GetProducts(ctx context.Context, db *sql.DB, rdb *redis.Client, w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
@@ -98,7 +95,7 @@ return "data:image/png;base64," + base64Image, nil
 }
 
 // Ambil produk berdasarkan ID
-func getProductByID(w http.ResponseWriter, r *http.Request) {
+func GetProductByID(ctx context.Context, db *sql.DB, rdb *redis.Client, w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
@@ -129,14 +126,14 @@ func getProductByID(w http.ResponseWriter, r *http.Request) {
 
 
 //gambar
-func createProduct(w http.ResponseWriter, r *http.Request) {
+func CreateProduct(ctx context.Context, db *sql.DB, rdb *redis.Client, w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
 
 	// Upload gambar
-	imageURL, err := uploadImage(w, r)
+	imageURL, err := uploadImage(ctx, db, rdb, w, r)
 	if err != nil {
 		http.Error(w, "Image upload failed: "+err.Error(), http.StatusInternalServerError)
 		return
@@ -176,7 +173,7 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 // Update produk
-func updateProduct(w http.ResponseWriter, r *http.Request) {
+func UpdateProduct(ctx context.Context, db *sql.DB, rdb *redis.Client, w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPut {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
@@ -197,7 +194,7 @@ func updateProduct(w http.ResponseWriter, r *http.Request) {
 	// Proses upload gambar (jika ada)
 	var err error
 	if r.MultipartForm != nil {
-		imageURL, uploadErr := uploadImage(w, r)
+		imageURL, uploadErr := uploadImage(ctx, db, rdb, w, r)
 		if uploadErr == nil {
 			product.ImageURL = imageURL // Simpan URL gambar baru jika upload berhasil
 		} else {
@@ -229,7 +226,7 @@ func updateProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 // Hapus produk
-func deleteProduct(w http.ResponseWriter, r *http.Request) {
+func DeleteProduct(ctx context.Context, db *sql.DB, rdb *redis.Client, w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
@@ -254,7 +251,7 @@ func deleteProduct(w http.ResponseWriter, r *http.Request) {
 	// Kirim respons sukses
 	fmt.Fprintf(w, "Product deleted successfully with ID: %s", id)
 }
-func uploadImage(w http.ResponseWriter, r *http.Request) (string, error) {
+func uploadImage(ctx context.Context, db *sql.DB, rdb *redis.Client, w http.ResponseWriter, r *http.Request) (string, error) {
 	// Parse multipart form, allowing up to 10 MB files
 	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {

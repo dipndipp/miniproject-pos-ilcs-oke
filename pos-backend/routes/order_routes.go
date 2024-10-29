@@ -1,15 +1,35 @@
 package routes
 
 import (
+	"context"
+	"database/sql"
 	"net/http"
 	"pos-backend/handlers"
+
+	"github.com/go-redis/redis/v8"
 )
 
-func RegisterOrderRoutes() {
-    http.HandleFunc("/orders", handlers.GetOrders)
-    http.HandleFunc("/create-order", handlers.CreateOrder)
-    http.HandleFunc("/complete-order", handlers.CompleteOrder)
-    http.HandleFunc("/cancel-order", handlers.CancelOrder)
-    http.HandleFunc("/completed-orders", handlers.GetCompletedOrders)
-    http.HandleFunc("/delete-order", handlers.DeleteOrder)
-}
+    func RegisterOrderRoutes(ctx context.Context, db *sql.DB, rdb *redis.Client) {
+        
+ 
+        http.HandleFunc("/orders", func(w http.ResponseWriter, r *http.Request) {
+            handlers.GetOrders(ctx, db, rdb, w, r)
+        })
+        http.HandleFunc("/create-order", func(w http.ResponseWriter, r *http.Request) {
+            handlers.CreateOrder(ctx, db, rdb, w, r)
+        })
+        http.HandleFunc("/complete-order", func(w http.ResponseWriter, r *http.Request) {
+            handlers.CompleteOrder(ctx, db, rdb, w, r)
+        })
+        http.HandleFunc("/cancel-order", func(w http.ResponseWriter, r *http.Request) {
+            handlers.CancelOrder(ctx, db, rdb, w, r)
+        })
+        http.HandleFunc("/completed-orders", func(w http.ResponseWriter, r *http.Request) {
+            handlers.GetCompletedOrders(ctx, db, rdb, w, r)
+        })
+        http.HandleFunc("/delete-order", func(w http.ResponseWriter, r *http.Request) {
+            handlers.DeleteOrder(ctx, db, rdb, w, r)
+        })
+    }
+    
+  
